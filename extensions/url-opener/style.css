@@ -1,0 +1,128 @@
+/* Highlight for Fortune 500 companies */
+.fortune500-highlighted {
+  font-weight: bold;
+  color: rgb(38, 255, 0);
+}
+.High_Opportunity-highlighted {
+  font-weight: bold;
+  color: rgb(255, 0, 0);
+}
+.Low_Opportunity-highlighted {
+  font-weight: bold;
+  color: #005eff(255, 126, 126);
+}
+.Medium_Opportunity-highlighted {
+  font-weight: bold;
+  color: rgb(242, 255, 0)(255, 126, 126);
+}
+
+.city-highlighted {
+  font-weight: bold;
+  color: purple;
+}
+
+/* Highlight for International companies */
+.international-highlighted {
+  font-weight: bold;
+  color: yellow;
+}
+/* Highlight for International companies */
+.term-highlighted {
+  font-weight: bold;
+  color: green;
+}
+
+/* Salary Range: $30,000 - $45,000 (Light Green) */
+.sal_30000_45000-highlighted {
+  font-weight: bold;
+  color: #6cffb3;
+}
+
+/* Salary Range: $35,000 - $50,000 (Light Blue) */
+.sal_35000_50000-highlighted {
+  font-weight: bold;
+  color: #99e6ff;
+}
+
+/* Salary Range: $40,000 - $60,000 (Light Purple) */
+.sal_40000_60000-highlighted {
+  font-weight: bold;
+  color: #e0ccff;
+}
+
+/* Salary Range: $45,000 - $70,000 (Light Orange) */
+.sal_45000_70000-highlighted {
+  font-weight: bold;
+  color: #ffcc99;
+}
+
+/* Salary Range: $50,000 - $80,000 (Light Brown) */
+.sal_50000_80000-highlighted {
+  font-weight: bold;
+  color: #d2b48c;
+}
+
+/* Salary Range: $55,000 - $85,000 (Light Pink) */
+.sal_55000_85000-highlighted {
+  font-weight: bold;
+  color: #ffc0cb;
+}
+
+/* Salary Range: $60,000 - $90,000 (Light Aqua) */
+.sal_60000_90000-highlighted {
+  font-weight: bold;
+  color: #aeeeee;
+}
+
+/* Salary Range: $70,000 - $100,000 (Light Gray) */
+.sal_70000_100000-highlighted {
+  font-weight: bold;
+  color: #d3d3d3;
+}
+
+/* Salary Range: $80,000 - $120,000 (Light Violet) */
+.sal_80000_120000-highlighted {
+  font-weight: bold;
+  color: #d8bfd8;
+}
+
+/* Salary Range: $90,000 - $130,000 (Light Yellow) */
+.sal_90000_130000-highlighted {
+  font-weight: bold;
+  color: #ffffb3;
+}
+
+/* Salary Range: $100,000 - $150,000 (Light Cyan) */
+.sal_100000_150000-highlighted {
+  font-weight: bold;
+  color: #b3ffff;
+}
+
+/* Salary Range: $110,000 - $160,000 (Light Rose) */
+.sal_110000_160000-highlighted {
+  font-weight: bold;
+  color: #ffc0cb;
+}
+
+/* Salary Range: $120,000 - $170,000 (Light Gold) */
+.sal_120000_170000-highlighted {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* Salary Range: $130,000 - $180,000 (Light Magenta) */
+.sal_130000_180000-highlighted {
+  font-weight: bold;
+  color: #ff00ff;
+}
+
+/* Salary Range: $140,000 - $200,000 (Light Teal) */
+.sal_140000_200000-highlighted {
+  font-weight: bold;
+  color: #00ffff;
+}
+/* Salary Range: $140,000 - $200,000 (Light Teal) */
+.keyword-highlighted {
+  font-weight: bold;
+  color: blue;
+}
