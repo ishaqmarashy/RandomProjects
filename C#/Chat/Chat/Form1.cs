@@ -19,35 +19,22 @@ namespace Chat
     {
         private MongoDBConnection mongoDBConnection;
         private int numMessages = 0;
+        private int numMessagesStart = 0;
         private int numChanges = 0;
+        private const int maxNumMessages = 14;
         public CChat()
         {
             mongoDBConnection = new MongoDBConnection(this);
             string res = mongoDBConnection.ConnectToDatabase();
-            var result = mongoDBConnection.GetRecentMessages(50);
+            var result = mongoDBConnection.GetRecentMessages(maxNumMessages);
             InitializeComponent();
-            changeChat(result);
+            changeChat(result,true);
             connectionInfo.Text = res;
-            Task.Run(() => mongoDBConnection.StartChangeStream());
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-        }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
+            Task.Run(() => mongoDBConnection.StartChangeStream());
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -66,20 +53,42 @@ namespace Chat
             {
                 mongoDBConnection.InsertMessage(messageDocument);
                 numMessages++;
-                connectionInfo.Text = string.Format("Sent:{0}\nChanges{1}", numMessages, numChanges);
+                connectionInfo.Text = string.Format("Changes{0}", numChanges);
             }
             catch (Exception ex)
             {
                 connectionInfo.Text = ex.ToString();
             }
         }
-        public void changeChat(List<BsonDocument> bson)
+        public void changeChat(List<BsonDocument> bson,bool start=false)
         {
-            numChanges++;
-              foreach (var element in bson)
+            if (bson.Count() > 0)
             {
-                textboxLabel.Text += "Date:"+element["timestamp"] + "\n" + element["text"] + "\n";
-                connectionInfo.Text = string.Format("Sent:{0}\nChanges{1}", numMessages,numChanges);
+                foreach (var element in bson)
+                {
+                    if (element["text"].ToString().Length == 0) element["text"] = "No Message";
+                    textboxLabel.Text += "Date:" + element["timestamp"] + "\n" + element["text"]+"\n";
+                    if (start) numMessagesStart++;
+                }
+                if (start) textboxLabel.Text += string.Format("----------------{0}-Prev----------------\n\n", numMessagesStart);
+
+                connectionInfo.Text = string.Format("Changes: {0}", numChanges++);
+            }
+            while (numMessages + numMessagesStart > maxNumMessages)
+            {
+                numMessages--;
+                int indexOfNewline = textboxLabel.Text.IndexOf("\n");
+
+                if (indexOfNewline != -1)
+                {
+                    textboxLabel.Text= textboxLabel.Text.Substring(indexOfNewline + 1);
+                    indexOfNewline = textboxLabel.Text.IndexOf("\n");
+                    textboxLabel.Text= textboxLabel.Text.Substring(indexOfNewline + 1);
+
+                }
+                connectionInfo.Text = string.Format("replacing: {0}", numChanges);
+
+
             }
         }
 
