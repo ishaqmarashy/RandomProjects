@@ -42,7 +42,7 @@ static ID3D12GraphicsCommandList*   g_pd3dCommandList = nullptr;
 static ID3D12Fence*                 g_fence = nullptr;
 static HANDLE                       g_fenceEvent = nullptr;
 static UINT64                       g_fenceLastSignaledValue = 0;
-static IDXGISwapChain3*             g_pSwapChain = nullptr;
+static IDXGISwapChain3*             g_pSwapChain = nullptr;     
 static HANDLE                       g_hSwapChainWaitableObject = nullptr;
 static ID3D12Resource*              g_mainRenderTargetResource[NUM_BACK_BUFFERS] = {};
 static D3D12_CPU_DESCRIPTOR_HANDLE  g_mainRenderTargetDescriptor[NUM_BACK_BUFFERS] = {};
@@ -65,7 +65,7 @@ int main(int, char**)
     ::RegisterClassExW(&wc);
     HWND hwnd = ::CreateWindowW(wc.lpszClassName, L"Dear ImGui DirectX12 Example", WS_OVERLAPPEDWINDOW, 100, 100, 1280, 800, nullptr, nullptr, wc.hInstance, nullptr);
 
-    // Initialize Direct3D
+    // Initialize Direct3D  
     if (!CreateDeviceD3D(hwnd))
     {
         CleanupDeviceD3D();
