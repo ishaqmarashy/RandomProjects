@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\include;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\include;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\include;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\include;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\learnOpenGl\learnOpenGl\Dependacies\GLFW\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,16 +155,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dependacies\learnopengl\camera.h" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependacies\glad\glad.h" />
-    <ClInclude Include="Dependacies\GLFW\include\glfw3.h" />
-    <ClInclude Include="Dependacies\GLFW\include\glfw3native.h" />
+    <ClInclude Include="Dependacies\GLFW\GLFW\glfw3.h" />
+    <ClInclude Include="Dependacies\GLFW\GLFW\glfw3native.h" />
     <ClInclude Include="Dependacies\KHR\khrplatform.h" />
-    <ClInclude Include="Dependacies\shader_s.h" />
+    <ClInclude Include="Dependacies\learnopengl\shader_m.h" />
     <ClInclude Include="Dependacies\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
@@ -172,8 +173,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependacies\GLFW\libs\glfw3.pdb" />
-    <None Include="shaders\3.3.shader.fs" />
-    <None Include="shaders\3.3.shader.vs" />
+    <None Include="7.2.camera.fs" />
+    <None Include="7.2.camera.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -24,21 +24,24 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dependacies\learnopengl\camera.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Dependacies\KHR\khrplatform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependacies\GLFW\include\glfw3native.h">
+    <ClInclude Include="Dependacies\GLFW\GLFW\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependacies\GLFW\include\glfw3.h">
+    <ClInclude Include="Dependacies\GLFW\GLFW\glfw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependacies\glad\glad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependacies\shader_s.h">
+    <ClInclude Include="Dependacies\learnopengl\shader_m.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dependacies\stb_image.h">
@@ -50,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependacies\GLFW\libs\glfw3.pdb" />
-    <None Include="shaders\3.3.shader.fs" />
-    <None Include="shaders\3.3.shader.vs" />
+    <None Include="7.2.camera.fs" />
+    <None Include="7.2.camera.vs" />
   </ItemGroup>
 </Project>
