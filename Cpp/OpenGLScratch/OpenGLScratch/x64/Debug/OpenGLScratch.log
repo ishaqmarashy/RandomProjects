@@ -1,6 +1,9 @@
-﻿  main.cpp
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(78,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(80,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(81,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(82,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  VertexArray.cpp
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\VertexArray.cpp(20,97): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  main.cpp
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(59,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(60,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(61,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\main.cpp(62,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   OpenGLScratch.vcxproj -> C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\x64\Debug\OpenGLScratch.exe
