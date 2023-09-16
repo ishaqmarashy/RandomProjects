@@ -5,10 +5,11 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include "Renderer.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "VertexBufferLayout.h"
 #include "VertexArray.h"
+#include "Shader.h"
 #define HEIGHT 640
 #define WIDTH 480
 
@@ -42,31 +43,29 @@ int main() {
 	};
 
 	VertexArray va;
-	VertexBuffer vb(positions, 4*2 * sizeof(float));
+	VertexBuffer vb(positions,8*sizeof(float));
 	VertexBufferLayout layout;
-	layout.Push<float>(3);
-	va.AddBuffer(vb,layout);
-	IndexBuffer ib(indices,6);	
-
-	unsigned int shaderProgram=ParseShader("basic.shader");
-	glUseProgram(shaderProgram);
-
+	layout.Push<float>(2);
+	va.AddBuffer(vb, layout);
+	IndexBuffer ib(indices, 6);
+	Shader shader("basic.shader");
+	Renderer render;
 	//get u_colors location assert its been received then set its value
-	int u_colorLocation = glGetUniformLocation(shaderProgram, "u_color");
-	ASSERT(u_colorLocation != -1);
+	std::string color = "u_color";
 	float r, g, b, a;
 	while (!glfwWindowShouldClose(window)) {
 		r = std::cos(glfwGetTime()) * 1.0f;
 		g = std::sin(glfwGetTime()) * 1.0f;
 		b = std::tan(glfwGetTime()) * 1.0f;
 		a = std::tanh(glfwGetTime()) * 1.0f;
-		glUniform4f(u_colorLocation, r,g,b,a);
+		shader.Bind();
+		shader.SetUniform4f(color, r,g,b,a);
 
 		glClear(GL_COLOR_BUFFER_BIT);
+		render.Draw(va, ib, shader);
 		//draw triangles from an array starting from index 0 ending at index3
 		//opengl only knows what to draw cause we bound the buffer on line 37
 		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		GLCall(glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, nullptr));
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

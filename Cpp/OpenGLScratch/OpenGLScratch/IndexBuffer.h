@@ -11,5 +11,4 @@ public:
 	~IndexBuffer();
 	void Bind() const;
 	void Unbind() const;
-
 };
