@@ -2,7 +2,9 @@ C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\s
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\IndexBuffer.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\IndexBuffer.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\main.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\Shader.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\Shader.obj
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\tests\Test.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\Test.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\tests\TestClearColor.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\TestClearColor.obj
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\tests\TestTexture2D.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\TestTexture2D.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\Texture.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\Texture.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\glm\detail\glm.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\glm.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\imgui-1.89.9\imgui.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\imgui.obj
@@ -12,7 +14,6 @@ C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\s
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\imgui-1.89.9\imgui_impl_opengl3.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\imgui_impl_opengl3.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\imgui-1.89.9\imgui_tables.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\imgui_tables.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\imgui-1.89.9\imgui_widgets.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\imgui_widgets.obj
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\imgui-1.89.9\main.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\main.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\vendor\stb_image\stb_image.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\stb_image.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\VertexArray.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\VertexArray.obj
 C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\VertexBuffer.cpp;C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\x64\Debug\VertexBuffer.obj
