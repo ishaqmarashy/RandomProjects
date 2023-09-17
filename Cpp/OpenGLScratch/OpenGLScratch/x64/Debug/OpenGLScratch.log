@@ -1,8 +1,6 @@
-﻿  main.cpp
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp(66,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp(67,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp(68,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  VertexArray.cpp
-C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\VertexArray.cpp(21,97): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
-  Generating Code...
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1116,5): warning MSB8027: Two or more files with the name of main.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are src\main.cpp, src\vendor\imgui-1.89.9\main.cpp.
+  main.cpp
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp(101,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp(102,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\OpenGLScratch\src\main.cpp(103,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   OpenGLScratch.vcxproj -> C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\OpenGLScratch\x64\Debug\OpenGLScratch.exe
