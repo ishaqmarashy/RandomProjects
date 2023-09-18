@@ -21,10 +21,10 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stb.cpp">
+    <ClCompile Include="Dependacies\learnopengl\camera.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dependacies\learnopengl\camera.h">
+    <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,7 +44,7 @@
     <ClInclude Include="Dependacies\learnopengl\shader_m.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dependacies\stb_image.h">
+    <ClInclude Include="Dependacies\stb_image\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,7 +53,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependacies\GLFW\libs\glfw3.pdb" />
-    <None Include="7.2.camera.fs" />
-    <None Include="7.2.camera.vs" />
   </ItemGroup>
 </Project>

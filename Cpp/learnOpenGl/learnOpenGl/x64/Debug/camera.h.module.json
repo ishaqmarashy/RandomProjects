@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "x64\\Debug\\camera.h.obj",
+            "outputs": [
+                "C:\\Users\\ishaq\\OneDrive\\Desktop\\RandomProjects\\Cpp\\learnOpenGl\\learnOpenGl\\x64\\Debug\\vc143.pdb",
+                "x64\\Debug\\",
+                "C:\\Users\\ishaq\\OneDrive\\Desktop\\RandomProjects\\Cpp\\learnOpenGl\\learnOpenGl\\x64\\Debug\\camera.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "Dependacies\\learnopengl\\camera.h",
+                    "source-path": "c:\\users\\ishaq\\onedrive\\desktop\\randomprojects\\cpp\\learnopengl\\learnopengl\\dependacies\\learnopengl\\camera.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
