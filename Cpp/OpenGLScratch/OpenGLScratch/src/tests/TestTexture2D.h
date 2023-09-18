@@ -4,6 +4,7 @@
 #include "VertexBufferLayout.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <imgui.h>
+#include <memory>
 #define HEIGHT 540
 #define WIDTH 960
 
@@ -19,21 +20,18 @@ namespace test {
 		void OnRender();
 		void OnImGuiRender();
 	private:
-		VertexArray va;
-		VertexBuffer vb;
-		IndexBuffer ib;
-		Texture texture;
-		Shader shader;
 		Renderer render;
-		VertexBufferLayout layout;
-		std::string n_color;
-		std::string n_mvp;
-		std::string n_texture;
-		glm::vec3 translation;
+		std::unique_ptr <VertexArray> va;
+		std::unique_ptr <VertexBuffer> vb;
+		std::unique_ptr <IndexBuffer> ib;
+		std::unique_ptr <VertexBufferLayout> layout;
+		std::unique_ptr <Texture> texture;
+		std::unique_ptr <Shader> shader;
+		glm::vec3 translationA;
+		glm::vec3 translationB;
 		glm::mat4 proj;
 		glm::mat4 view;
-		float positions[16];
-		unsigned int indices[6];
-		float m_ClearColor[4];
+		glm::vec4 m_ClearColorA;
+		glm::vec4 m_ClearColorB;
 	};
 }

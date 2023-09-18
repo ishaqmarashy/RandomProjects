@@ -18,6 +18,7 @@
 #include "imgui_impl_opengl3.h"
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture2D.h"
+#include "Camera.h"
 #define HEIGHT 540
 #define WIDTH 960
 
@@ -41,11 +42,7 @@ int main() {
 		return -1;
 	}
 	//------------imgui------------------
-	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init(glsl_version);
@@ -68,14 +65,14 @@ int main() {
 		ImGui::NewFrame();
 		//--------------------------------
 		if (currentTest) {
-			currentTest->OnUpdate(0.0f);
-			currentTest->OnRender();
+			GLCall(currentTest->OnUpdate(0.0f));
+			GLCall(currentTest->OnRender());
 			ImGui::Begin("Test");
 			if (currentTest != testMenu && ImGui::Button("<-")) {
 				delete currentTest;
 				currentTest = testMenu;
 			}
-			currentTest->OnImGuiRender();
+			GLCall(currentTest->OnImGuiRender());
 			ImGui::End();
 		}
 		//--------------------------------
