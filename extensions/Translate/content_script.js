@@ -51,7 +51,6 @@ async function translateText(text, textFragment) {
     }),
     headers: { "Content-Type": "application/json" }
   });
-  console.log(rr);
   rr=(1+rr)%urls.length;
   const data = await response.json();
   const translatedText = data.translatedText;
