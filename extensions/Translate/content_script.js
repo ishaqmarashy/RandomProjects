@@ -1,4 +1,5 @@
 var rr=0,calls=0;
+var translatedTextArray = [];
 const urls=["https://translate.argosopentech.com/translate","https://translate.terraprint.co/translate"];
 const messageContainer = document.querySelector(".chat-scrollable-area__message-container");
 const identifier = "‽";
@@ -12,25 +13,37 @@ const observer = new MutationObserver((mutationsList) => {
           if (node && node.querySelectorAll) {
             // Check if the added node or its children have the desired text fragment
             const textFragments = node.querySelectorAll(".text-fragment[data-a-target='chat-message-text']");
-            var textFrags=[];
             for (let i = 0; i < textFragments.length; i++) {
-              textFrags.push(textFragments[i]);
+              translatedTextArray.push(textFragments[i]);
             }
-            translateText(textFrags);
           }
         });
     }
   }
 });
-
 observer.observe(messageContainer, { childList: true, subtree: true });
+
+function start(){
+  setTimeout(() => {
+    if(translatedTextArray.length>0){
+      const copy = translatedTextArray.slice(); // send a copy
+      translatedTextArray.length = 0; // empty the original array
+      translateText(copy); // translate the copy
+    }
+    start();
+  }, 5000);
+}
+start();
+
 function buildString(textFrags){
   var string="";
   for (var i=0; i<textFrags.length; i++){
-    if(i=textFrags.length-1)
-    string+=textFrags[i].textContent
-    else
-    string+=textFrags[i].textContent+identifier;
+    if(i==(textFrags.length-1)){
+      string+=textFrags[i].textContent
+    }
+    else{
+      string+=textFrags[i].textContent+identifier;
+    }
   }
   return string;
 }
@@ -46,7 +59,6 @@ function translationExists(translationKey){
     return false;
   }
 }
-
 function getLang(){
   var sourceLanguage = localStorage.getItem("translation_sourceLanguage$");
   var targetLanguage = localStorage.getItem("translation_targetLanguage$");
@@ -60,10 +72,9 @@ function getLang(){
   }
   return {sourceLanguage,targetLanguage};
 }
-
 function removeTranslated(textFrags,sourceLanguage,targetLanguage){
   for (let i = 0; i < textFrags.length&&i>=0; i++) {
-    const translationKey = sourceLanguage+2+targetLanguage+`:translation_${textFrags[i].textContent}`;
+    const translationKey = sourceLanguage + 2 + targetLanguage + `:translation_${textFrags[i].textContent}`;
     const storedTranslation = translationExists(translationKey);
     if (storedTranslation) {
       textFrags[i].textContent = storedTranslation;
@@ -71,24 +82,31 @@ function removeTranslated(textFrags,sourceLanguage,targetLanguage){
       i--;
       }
     }
-
     return textFrags;
 }
 
 async function translateText(textFrags) {
   var disabled=localStorage.getItem("TranslatorDisabled_$");
-  if (!textFrags[0]|| disabled != null) {
-    return;
-  }
-  // Check if the translation exists in local storage
   const { sourceLanguage, targetLanguage } = getLang();
+  console.info("Before:",!textFrags[0]||disabled!=null,textFrags);
+  // Check if the translation exists in local storage and remove the ones found
+  // This means the string builder will only take the ones not found
+  // in the local storage and send them for translation
   textFrags = removeTranslated(textFrags, sourceLanguage, targetLanguage);
+  console.info("After:",!textFrags[0]||disabled!=null,textFrags);
+  if (!textFrags[0]||disabled!=null) {return;}
 
-  const str = buildString(textFrags);
-  // Your code here
-  if (str.length <= 0) {
-    return;
+  
+  // Sanitize the text fragments for multiple languages
+  for (let i = 0; i < textFrags.length; i++) {
+    textFrags[i].textContent = textFrags[i].textContent.trim();
   }
+  // String builder / instead of sending a request every message
+  // Concatinate the strings and place seperator between them similar to CSVs
+  const str = buildString(textFrags);
+  // String builder will return an emptry string if theresnothing to build from
+  // I could technically check before this like but its redundent
+  if (str.length <= 0) {return;}
 
   const response = await fetch(urls[rr], {
     method: "POST",
@@ -106,8 +124,9 @@ async function translateText(textFrags) {
   var translatedTextFrags = extractTextFrags(translatedText);
   for (var i = 0; i < textFrags.length; i++) {
     const translationKey = sourceLanguage + 2 + targetLanguage + `:translation_${textFrags[i].textContent}`;
-    if (translatedTextFrags[i]&& translatedTextFrags[i].length > 1){
-      textFrags[i].textContent = translatedTextFrags[i];}
-    localStorage.setItem(translationKey, translatedText);
+    if (translatedTextFrags[i] && translatedTextFrags[i].length > 1){
+      textFrags[i].textContent = translatedTextFrags[i];
+    }
+      localStorage.setItem(translationKey, textFrags[i].textContent);
   }
 }
