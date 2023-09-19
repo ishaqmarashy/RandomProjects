@@ -3,7 +3,7 @@
   "name": "Translate",
   "version": "1.0",
   "description": "Translate text from twitch chat.",
-  "permissions": ["webRequest", "webRequestBlocking", "scripting", "storage"],
+  "permissions": ["webRequest", "webRequestBlocking", "scripting", "storage", "menus"],
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
@@ -22,5 +22,8 @@
       "16": "icons/icon16.png",
       "32": "icons/icon32.png"
     }
+  },
+  "background": {
+    "scripts": [ "background.js"]
   }
 }

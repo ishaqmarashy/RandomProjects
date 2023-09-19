@@ -1,7 +1,7 @@
 var rr=0,calls=0;
 const urls=["https://translate.argosopentech.com/translate","https://translate.terraprint.co/translate"];
 const messageContainer = document.querySelector(".chat-scrollable-area__message-container");
-const identifier = "&%&$@";
+const identifier = "‽";
 
 const observer = new MutationObserver((mutationsList) => {
   for (const mutation of mutationsList) {
@@ -27,12 +27,14 @@ observer.observe(messageContainer, { childList: true, subtree: true });
 function buildString(textFrags){
   var string="";
   for (var i=0; i<textFrags.length; i++){
+    if(i=textFrags.length-1)
+    string+=textFrags[i].textContent
+    else
     string+=textFrags[i].textContent+identifier;
   }
   return string;
 }
 function extractTextFrags(string) {
-  string = string.substring(0, string.length+1 - identifier.length); 
   return string.split(identifier);
 }
 function translationExists(translationKey){
@@ -41,7 +43,7 @@ function translationExists(translationKey){
     return storedTranslation;
   }
   else{
-    return 1!==1;
+    return false;
   }
 }
 
@@ -60,25 +62,24 @@ function getLang(){
 }
 
 function removeTranslated(textFrags,sourceLanguage,targetLanguage){
-  for (let i = 0; i < textFrags.length; i++) {
+  for (let i = 0; i < textFrags.length&&i>=0; i++) {
     const translationKey = sourceLanguage+2+targetLanguage+`:translation_${textFrags[i].textContent}`;
     const storedTranslation = translationExists(translationKey);
     if (storedTranslation) {
       textFrags[i].textContent = storedTranslation;
-      console.log("found:",storedTranslation);
       textFrags.splice(i, 1);
       i--;
       }
     }
+
     return textFrags;
 }
 
 async function translateText(textFrags) {
-  if (!textFrags[0]) {
+  var disabled=localStorage.getItem("TranslatorDisabled_$");
+  if (!textFrags[0]|| disabled != null) {
     return;
   }
-  console.log(textFrags[0].textContent);
-
   // Check if the translation exists in local storage
   const { sourceLanguage, targetLanguage } = getLang();
   textFrags = removeTranslated(textFrags, sourceLanguage, targetLanguage);
@@ -104,10 +105,9 @@ async function translateText(textFrags) {
   const translatedText = data.translatedText;
   var translatedTextFrags = extractTextFrags(translatedText);
   for (var i = 0; i < textFrags.length; i++) {
-    const translationKey = sourceLanguage + 2 + targetLanguage + `:translation_${translatedTextFrags[i].textContent}`;
-    if (translatedTextFrags[i].length > 1)
-      textFrags[i].textContent = translatedTextFrags[i];
+    const translationKey = sourceLanguage + 2 + targetLanguage + `:translation_${textFrags[i].textContent}`;
+    if (translatedTextFrags[i]&& translatedTextFrags[i].length > 1){
+      textFrags[i].textContent = translatedTextFrags[i];}
     localStorage.setItem(translationKey, translatedText);
-    console.log(calls++,translatedTextFrags[i]);
   }
 }
