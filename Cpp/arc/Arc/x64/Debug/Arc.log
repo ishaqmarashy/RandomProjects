@@ -1,0 +1,8 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Arc.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  arcdps_some_module.cpp
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(211,26): warning C4244: '=': conversion from 'double' to 'uint32_t', possible loss of data
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(270,41): warning C4477: '_snprintf_s' : format string '%u' requires an argument of type 'unsigned int', but variadic argument 4 has type 'uintptr_t'
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(270,41): message : consider using '%llu' in the format string
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(270,41): message : consider using '%Iu' in the format string
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(270,41): message : consider using '%I64u' in the format string
+  Arc.vcxproj -> C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\x64\Debug\arcdps_some_module.dll
