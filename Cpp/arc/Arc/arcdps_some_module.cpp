@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <Windows.h>
-#include "imgui.h"
+#include "imgui/imgui.h"
 
 /* arcdps export table */
 typedef struct arcdps_exports {
@@ -70,7 +70,7 @@ arcdps_exports arc_exports;
 char* arcvers;
 void dll_init(HANDLE hModule);
 void dll_exit();
-extern "C" __declspec(dllexport) void* get_init_addr(char* arcversion, ImGuiContext* imguictx, void* id3dptr, HANDLE arcdll, void* mallocfn, void* freefn, uint32_t d3dversion);
+extern "C" __declspec(dllexport) void* get_init_addr(char* arcversion, ImGuiContext * imguictx, void* id3dptr, HANDLE arcdll, void* mallocfn, void* freefn, uint32_t d3dversion);
 extern "C" __declspec(dllexport) void* get_release_addr();
 arcdps_exports* mod_init();
 uintptr_t mod_release();
@@ -78,7 +78,7 @@ uintptr_t mod_wnd(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 uintptr_t mod_combat(cbtevent* ev, ag* src, ag* dst, char* skillname, uint64_t id, uint64_t revision);
 void log_file(char* str);
 void log_arc(char* str);
-
+void mod_imgui(uint32_t not_charsel_or_loading, uint32_t hide_if_combat_or_ooc) ;
 /* arcdps exports */
 void* filelog;
 void* arclog;
@@ -120,13 +120,13 @@ void dll_exit() {
 }
 
 /* export -- arcdps looks for this exported function and calls the address it returns on client load */
-extern "C" __declspec(dllexport) void* get_init_addr(char* arcversion, ImGuiContext* imguictx, void* id3dptr, HANDLE arcdll, void* mallocfn, void* freefn, uint32_t d3dversion) {
+extern "C" __declspec(dllexport) void* get_init_addr(char* arcversion, ImGuiContext * imguictx, void* id3dptr, HANDLE arcdll, void* mallocfn, void* freefn, uint32_t d3dversion) {
 	// id3dptr is IDirect3D9* if d3dversion==9, or IDXGISwapChain* if d3dversion==11
 	arcvers = arcversion;
 	filelog = (void*)GetProcAddress((HMODULE)arcdll, "e3");
 	arclog = (void*)GetProcAddress((HMODULE)arcdll, "e8");
 	ImGui::SetCurrentContext((ImGuiContext*)imguictx);
-	ImGui::SetAllocatorFunctions((void *(*)(size_t, void*))mallocfn, (void (*)(void*, void*))freefn); // on imgui 1.80+
+	ImGui::SetAllocatorFunctions((void* (*)(size_t, void*))mallocfn, (void (*)(void*, void*))freefn); // on imgui 1.80+
 	return mod_init;
 }
 
@@ -143,11 +143,13 @@ arcdps_exports* mod_init() {
 	arc_exports.sig = 0xFFFA;
 	arc_exports.imguivers = IMGUI_VERSION_NUM;
 	arc_exports.size = sizeof(arcdps_exports);
-	arc_exports.out_name = "combatdemo";
+	arc_exports.out_name = "Some random shit";
 	arc_exports.out_build = "0.1";
 	arc_exports.wnd_nofilter = mod_wnd;
 	arc_exports.combat = mod_combat;
-	//arc_exports.size = (uintptr_t)"error message if you decide to not load, sig must be 0";
+	arc_exports.options_windows = 0;
+	arc_exports.imgui = mod_imgui;
+		//arc_exports.size = (uintptr_t)"error message if you decide to not load, sig must be 0";
 	log_arc((char*)"combatdemo: done mod_init"); // if using vs2015+, project properties > c++ > conformance mode > permissive to avoid const to not const conversion error
 	log_file((char*)"combatdemo: done mod init");
 	return &arc_exports;
@@ -166,8 +168,8 @@ uintptr_t mod_wnd(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	char* p = &buff[0];
 
 	/* yes */
-	p += _snprintf_s(p, 400, _TRUNCATE, "combatdemo: ==== wndproc %llx ====\n", (uintptr_t)hWnd);
-	p += _snprintf_s(p, 400, _TRUNCATE, "umsg %u, wparam %lld, lparam %lld\n", uMsg, wParam, lParam);
+	p += _snprintf_s(p, 400, _TRUNCATE, "byeeeeeeeeeeeeeee\n", (uintptr_t)hWnd);
+	p += _snprintf_s(p, 400, _TRUNCATE, "byeeeeeeeeeeeeeee\n", uMsg, wParam, lParam);
 
 	/* hotkey */
 	if (uMsg == WM_KEYDOWN) {
@@ -177,9 +179,6 @@ uintptr_t mod_wnd(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		}
 	}
 
-	/* print */
-	//log_arc(&buff[0]);
-	//log_file(&buff[0]);
 	return uMsg;
 }
 
@@ -195,94 +194,13 @@ uintptr_t mod_combat(cbtevent* ev, ag* src, ag* dst, char* skillname, uint64_t i
 
 		/* notify tracking change */
 		if (!src->elite) {
-
-			/* add */
-			if (src->prof) {
-				p += _snprintf_s(p, 400, _TRUNCATE, "==== cbtnotify ====\n");
-				p += _snprintf_s(p, 400, _TRUNCATE, "agent added: %s:%s (%0llx), instid: %u, prof: %u, elite: %u, self: %u, team: %u, subgroup: %u\n", src->name, dst->name, src->id, dst->id, dst->prof, dst->elite, dst->self, src->team, dst->team);
-			}
-
-			/* remove */
-			else {
-				p += _snprintf_s(p, 400, _TRUNCATE, "==== cbtnotify ====\n");
-				p += _snprintf_s(p, 400, _TRUNCATE, "agent removed: %s (%0llx)\n", src->name, src->id);
-			}
+			p += _snprintf_s(p, 400, _TRUNCATE, "Tracking change for non-elite source\n");
 		}
-
-		/* target change */
-		else if (src->elite == 1) {
-			p += _snprintf_s(p, 400, _TRUNCATE, "==== cbtnotify ====\n");
-			p += _snprintf_s(p, 400, _TRUNCATE, "new target: %0llx\n", src->id);
-		}
-	}
 
 	/* combat event. skillname may be null. non-null skillname will remain static until client exit. refer to evtc notes for complete detail */
 	else {
-
-		/* default names */
-		if (!src->name || !strlen(src->name)) src->name = (char*)"(area)";
-		if (!dst->name || !strlen(dst->name)) dst->name = (char*)"(area)";
-
 		/* common */
-		p += _snprintf_s(p, 400, _TRUNCATE, "combatdemo: ==== cbtevent %u at %llu ====\n", cbtcount, ev->time);
-		p += _snprintf_s(p, 400, _TRUNCATE, "source agent: %s (%0llx:%u, %lx:%lx), master: %u\n", src->name, ev->src_agent, ev->src_instid, src->prof, src->elite, ev->src_master_instid);
-		if (ev->dst_agent) p += _snprintf_s(p, 400, _TRUNCATE, "target agent: %s (%0llx:%u, %lx:%lx)\n", dst->name, ev->dst_agent, ev->dst_instid, dst->prof, dst->elite);
-		else p += _snprintf_s(p, 400, _TRUNCATE, "target agent: n/a\n");
-
-		/* statechange */
-		if (ev->is_statechange) {
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_statechange: %u\n", ev->is_statechange);
-		}
-
-		/* activation */
-		else if (ev->is_activation) {
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_activation: %u\n", ev->is_activation);
-			p += _snprintf_s(p, 400, _TRUNCATE, "skill: %s:%u\n", skillname, ev->skillid);
-			p += _snprintf_s(p, 400, _TRUNCATE, "ms_expected: %d\n", ev->value);
-		}
-
-		/* buff remove */
-		else if (ev->is_buffremove) {
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_buffremove: %u\n", ev->is_buffremove);
-			p += _snprintf_s(p, 400, _TRUNCATE, "skill: %s:%u\n", skillname, ev->skillid);
-			p += _snprintf_s(p, 400, _TRUNCATE, "ms_duration: %d\n", ev->value);
-			p += _snprintf_s(p, 400, _TRUNCATE, "ms_intensity: %d\n", ev->buff_dmg);
-		}
-
-		/* buff */
-		else if (ev->buff) {
-
-			/* damage */
-			if (ev->buff_dmg) {
-				p += _snprintf_s(p, 400, _TRUNCATE, "is_buff: %u\n", ev->buff);
-				p += _snprintf_s(p, 400, _TRUNCATE, "skill: %s:%u\n", skillname, ev->skillid);
-				p += _snprintf_s(p, 400, _TRUNCATE, "dmg: %d\n", ev->buff_dmg);
-				p += _snprintf_s(p, 400, _TRUNCATE, "is_shields: %u\n", ev->is_shields);
-			}
-
-			/* application */
-			else {
-				p += _snprintf_s(p, 400, _TRUNCATE, "is_buff: %u\n", ev->buff);
-				p += _snprintf_s(p, 400, _TRUNCATE, "skill: %s:%u\n", skillname, ev->skillid);
-				p += _snprintf_s(p, 400, _TRUNCATE, "raw ms: %d\n", ev->value);
-				p += _snprintf_s(p, 400, _TRUNCATE, "overstack ms: %u\n", ev->overstack_value);
-			}
-		}
-
-		/* strike */
-		else {
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_buff: %u\n", ev->buff);
-			p += _snprintf_s(p, 400, _TRUNCATE, "skill: %s:%u\n", skillname, ev->skillid);
-			p += _snprintf_s(p, 400, _TRUNCATE, "dmg: %d\n", ev->value);
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_moving: %u\n", ev->is_moving);
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_ninety: %u\n", ev->is_ninety);
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_flanking: %u\n", ev->is_flanking);
-			p += _snprintf_s(p, 400, _TRUNCATE, "is_shields: %u\n", ev->is_shields);
-		}
-
-		/* common */
-		p += _snprintf_s(p, 400, _TRUNCATE, "iff: %u\n", ev->iff);
-		p += _snprintf_s(p, 400, _TRUNCATE, "result: %u\n", ev->result);
+		p += _snprintf_s(p, 400, _TRUNCATE, "Combat event occurred\n");
 		cbtcount += 1;
 	}
 
@@ -290,4 +208,19 @@ uintptr_t mod_combat(cbtevent* ev, ag* src, ag* dst, char* skillname, uint64_t i
 	log_arc(&buff[0]);
 	//log_file(&buff[0]);
 	return 0;
+}
+	}
+void mod_imgui(uint32_t not_charsel_or_loading, uint32_t hide_if_combat_or_ooc) {
+    // Check if the character is not in the character selection screen or loading screen
+            // Start a new ImGui frame
+            ImGui::NewFrame();
+
+            // Create a new window
+            ImGui::Begin("My Custom Window");
+
+            // Add some text to the window
+            ImGui::Text("Hello, World!");
+
+            // End the window
+            ImGui::End();
 }

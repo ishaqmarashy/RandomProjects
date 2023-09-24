@@ -1,0 +1,17 @@
+﻿  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  arcdps_some_module.cpp
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(171,72): warning C4474: '_snprintf_s' : too many arguments passed for format string
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(171,72): message : placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(172,61): warning C4474: '_snprintf_s' : too many arguments passed for format string
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(172,61): message : placeholders and their parameters expect 0 variadic arguments, but 3 were provided
+     Creating library C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\x64\Release\arcdps_some_module.lib and object C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\x64\Release\arcdps_some_module.exp
+  Generating code
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\Arc\arcdps_some_module.cpp(212): warning C4715: 'mod_combat': not all control paths return a value
+  All 628 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Arc.vcxproj -> C:\Users\ishaq\OneDrive\Desktop\RandomProjects\Cpp\arc\x64\Release\arcdps_some_module.dll
