@@ -1,0 +1,41 @@
+mysql --host=127.0.0.1 --port=3306 --user=root --password=MjM3MjctaXNoYXFt
+
+Download and Install Kafka:
+
+Visit the official Apache Kafka website.
+Download the latest stable version of Kafka.
+Follow the installation instructions provided in the Kafka documentation.
+Start Zookeeper:
+
+Kafka uses Zookeeper for coordination. Start Zookeeper by running the appropriate script or command.
+bash
+Copy code
+bin/zookeeper-server-start.sh config/zookeeper.properties
+Configure Kafka:
+
+Copy the default Kafka configuration file and make any necessary adjustments.
+bash
+Copy code
+cp config/server.properties config/server-custom.properties
+Start Kafka Broker(s):
+
+Start the Kafka broker(s) using the modified configuration file.
+bash
+Copy code
+bin/kafka-server-start.sh config/server-custom.properties
+Create a Topic:
+
+Topics are used to organize and categorize data. Create a topic using the following command:
+bash
+Copy code
+bin/kafka-topics.sh --create --topic your_topic_name --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+Produce and Consume Messages:
+
+Use the Kafka command-line tools to produce and consume messages.
+bash
+Copy code
+# Produce messages
+bin/kafka-console-producer.sh --topic your_topic_name --bootstrap-server localhost:9092
+
+# Consume messages
+bin/kafka-console-consumer.sh --topic your_topic_name --bootstrap-server localhost:9092 --from-beginning

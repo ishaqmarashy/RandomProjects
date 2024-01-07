@@ -1,13 +1,12 @@
 // Add an event listener to the browser action icon
-browser.action.onClicked.addListener(handleIconClick);
+chrome.action.onClicked.addListener(handleIconClick);
 
 function handleIconClick() {
-
   var disabled = localStorage.getItem("TranslatorDisabled_$");
   if (disabled == null) {
     // Disable the addon
     localStorage.setItem("TranslatorDisabled_$", "true");
-    browser.action.setIcon({
+    chrome.action.setIcon({
       path: {
         "16": "icons/icon16D.png",
         "32": "icons/icon32D.png",
@@ -19,7 +18,7 @@ function handleIconClick() {
   } else {
     // Enable the addon
     localStorage.removeItem("TranslatorDisabled_$");
-    browser.action.setIcon({
+    chrome.action.setIcon({
       path: {
         "16": "icons/icon16.png",
         "32": "icons/icon32.png",
@@ -29,5 +28,4 @@ function handleIconClick() {
       }
     });
   }
-
 }

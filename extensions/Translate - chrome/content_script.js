@@ -1,6 +1,6 @@
 var rr=0,calls=0;
 var translatedTextArray = [];
-const urls=["https://translate.argosopentech.com/translate","https://translate.terraprint.co/translate"];
+const urls=["https://translate.terraprint.co/translate"];
 const messageContainer = document.querySelector(".chat-scrollable-area__message-container");
 const identifier = "‽";
 
@@ -12,7 +12,7 @@ const observer = new MutationObserver((mutationsList) => {
         addedNodes.forEach((node, index) => {
           if (node && node.querySelectorAll) {
             // Check if the added node or its children have the desired text fragment
-            const textFragments = node.querySelectorAll(".text-fragment[data-a-target='chat-message-text']");
+            const textFragments = document.querySelectorAll(".chat-line__message .message")
             for (let i = 0; i < textFragments.length; i++) {
               translatedTextArray.push(textFragments[i]);
             }
